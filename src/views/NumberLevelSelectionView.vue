@@ -1,8 +1,5 @@
 <script setup>
 import LevelSelectButton from '@/components/LevelSelectButton.vue';
-import StarScoring from '@/components/StarScoring.vue';
-
-
 </script>
 
 <template>
@@ -12,9 +9,9 @@ import StarScoring from '@/components/StarScoring.vue';
     </p>
 
     <div class="grid grid-cols-3 gap-4 w-full max-w-7xl mx-auto mb-10">
-      <LevelSelectButton title="Easy" :stars="1" :locked="false" route="/dev" />
-      <LevelSelectButton title="Medium" :stars="2" :locked="true" route="/dev" />
-      <LevelSelectButton title="Hard" :stars="3" :locked="true" route="/dev" />
+      <LevelSelectButton :id="0" title="Easy" :stars="1" :locked="false" route="/numbers/matching/0" />
+      <LevelSelectButton :id="1" title="Medium" :stars="2" :locked="false" route="/numbers/matching/1" />
+      <LevelSelectButton :id="2" title="Hard" :stars="3" :locked="false" route="/numbers/matching/2" />
     </div>
   </div>
 </template>
