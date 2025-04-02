@@ -22,6 +22,11 @@ npm install
 npm run dev
 ```
 
+### Install dependencies
+```sh
+npm install tailwindcss @tailwindcss/vite
+```
+
 ### Compile and Minify for Production
 
 ```sh
