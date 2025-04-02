@@ -12,9 +12,9 @@ import StarScoring from '@/components/StarScoring.vue';
     </p>
 
     <div class="grid grid-cols-3 gap-4 w-full max-w-7xl mx-auto mb-10">
-      <LevelSelectButton title="Easy" stars="1" :locked="false" route="/dev" />
-      <LevelSelectButton title="Medium" stars="2" :locked="true" />
-      <LevelSelectButton title="Hard" stars="3" :locked="true" />
+      <LevelSelectButton title="Easy" :stars="1" :locked="false" route="/dev" />
+      <LevelSelectButton title="Medium" :stars="2" :locked="true" route="/dev" />
+      <LevelSelectButton title="Hard" :stars="3" :locked="true" route="/dev" />
     </div>
   </div>
 </template>
