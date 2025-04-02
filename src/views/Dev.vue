@@ -7,8 +7,8 @@ import WLetterTestPage from '@/components/WLetterTestPage.vue';
 
 <template>
     <div class="flex flex-col w-full h-full flex-wrap items-center justify-center gap-6">
-        <!-- <NumberBox maxObjects="10" objectType="2" randomObjectPerLevel="true" /> -->
+        <NumberBox maxObjects="10" objectType="2" randomObjectPerLevel="true" />
         <!-- <LetterBox :repetitions="3" letter="A" /> -->
-         <WLetterTestPage />
+        
     </div>
 </template>

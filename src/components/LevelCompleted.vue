@@ -1,30 +1,36 @@
 <script setup>
 import HomeButton from './HomeButton.vue';
 import StarScoring from './StarScoring.vue';
+
+const props = defineProps({
+    stars: { type: Number, required: true, default: 0 },
+    nextLevelRoute: { type: String, required: true, default: '/' },
+});
+
 </script>
 
 <template>
-    <div class="h-screen bg-[var(--color-darkmint)] p-4 py-10 px-10 mx-0 flex flex-col items-center gap-10 relative">
+    <div class="h-screen w-screen bg-[var(--color-darkmint)] p-4 py-10 px-10 mx-0 flex flex-col items-center gap-10 relative">
     <!--Home Button-->
-        <HomeButton class="relative right-[48%] transform -translate-y-1/2 z-10"/>
+        <HomeButton class="absolute top-8 left-8 h-16"/>
     
     <!--Text for level completed-->
         <p class="mt-12 text-[var(--color-yellowTheme)] custom-text-border text-[3.5rem] mb-0 block leading-none" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
-            FIRST LEVEL
+            LEVEL
         </p>
 
         <p class="mt-2 text-[var(--color-yellowTheme)] custom-text-border text-[5rem] mb-0 block leading-none" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
             COMPLETED
         </p>
 
-        <StarScoring/>
+        <StarScoring :starCount="props.stars" />
 
         
-        <button id="next" class="text-[var(--color-blueTheme)] text-[2.5rem] bg-white rounded-2xl border-[var(--color-pink)] border-3 px-3 cursor-pointer flex items-center gap-2"
+        <router-link :to="props.nextLevelRoute" id="next" class="text-[var(--color-blueTheme)] text-[2.5rem] bg-white rounded-2xl border-[var(--color-pink)] border-3 px-3 cursor-pointer flex justify-center items-center gap-2"
         style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
             NEXT
             <img src="@/assets/icons/playicon.png" alt="Button Image" class="custom-play-icon play-icon-size" />
-        </button>
+        </router-link>
     </div>
 </template>
 

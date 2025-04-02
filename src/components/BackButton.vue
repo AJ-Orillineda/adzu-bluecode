@@ -1,7 +1,15 @@
 <script setup>
+import { onMounted } from 'vue';
+
 const props = defineProps({
-    route: { type: String, required: true, default: '/' },
+    route: { type: String, default: '' },
 });
+
+// const defaultBehavior = ref((props.route.length === 0 ));
+
+// const goBack = () => {
+//     router.back();
+// };
 </script>
 
 <template>

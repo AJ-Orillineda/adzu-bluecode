@@ -1,5 +1,5 @@
 <template>
-    <button id="home-button" class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16">
+    <button id="home-button" class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16 flex items-center justify-center">
         <img src="@/assets/icons/homeicon.png" alt="Button Image" class="custom-home-icon home-icon-size" />
     </button>
 </template>
