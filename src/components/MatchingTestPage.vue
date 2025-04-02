@@ -1,5 +1,6 @@
 <script setup>
 import BackButton from './BackButton.vue';
+import NumberBox from './NumberBox.vue';
 </script>
 
 <template>
@@ -10,51 +11,19 @@ import BackButton from './BackButton.vue';
       </p>
 
       <!--Back Button-->
-        <BackButton class="relative right-[48%] -top-[6rem] transform -translate-y-1/2 z-10"/>
+        <BackButton class="relative right-[48%] -top-[6rem] transform -translate-y-1/2 z-10"/> <!--custom position for this component-->
       
         <button @click="randomizeImages">Show Random Images</button>
       <!-- Container for objects/images-->
-        <div id="container-objects">
-            <img v-for="(image, index) in displayedImages" :key="index" :src="image" alt="Apple" />
+        <div class="flex flex-row w-full h-full flex-wrap items-center justify-center">
+            <NumberBox maxObjects="10" objectType="2" randomObjectPerLevel="true" />
         </div>
-
-        <!--Buttons for answer choices-->
-        <div id="choice-answer" class="flex">
-            but
-        </div>
-
       
   
      
     </div>
   </template>
   
-  <script>
-  import { ref } from 'vue';
-  import backIcon from '@/assets/icons/backicon.png'; // Import the image
-
-const imageUrls = ref([
-    backIcon,
-    backIcon,
-    backIcon,
-    backIcon,
-    backIcon,
-  // Add your image URLs here
-]);
-
-const displayedImages = ref([]);
-const previousCount = ref(null); // Store the previous count
-
-function randomizeImages() {
-  let newCount;
-  do {
-    newCount = Math.floor(Math.random() * imageUrls.value.length) + 1;
-  } while (newCount === previousCount.value); // Keep generating until different
-
-  previousCount.value = newCount; // Update the previous count
-  displayedImages.value = imageUrls.value.slice(0, newCount);
-}
-  </script>
   
   <style scoped>
   .cursor-stencil {

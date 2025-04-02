@@ -21,7 +21,7 @@
 
 
 @media (max-width: 360px){
-.play-icon{
+.back-icon{
       width: 0;
       background-repeat: no-repeat;
     }
