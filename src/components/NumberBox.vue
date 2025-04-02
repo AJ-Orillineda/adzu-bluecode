@@ -6,6 +6,8 @@ import { ref, computed } from 'vue';
 // import water from '/dev/img/water.png';
 // import pencil from '/dev/img/pencil.png';
 
+const containerStyle = ref({}); // Reactive ref for background color
+
 const images = [
     { path: '/dev/img/apple.png', name: 'apple' },
     { path: '/dev/img/cat.png', name: 'cat' },
@@ -138,9 +140,17 @@ const checkAnswer = (index) => {
 
     if (currentRoundChoices.value[index] === currentRoundObjectCount.value) {
         score.value += scorePerCorrectAnswer.value;
-        alert('Correct!');
+        //alert('Correct!');
+        containerStyle.value = { backgroundColor: 'green' }; // Set background to green
+        setTimeout(() => {
+            containerStyle.value = {}; // Reset to default
+        }, 250);
     } else {
-        alert('Incorrect! The correct answer is ' + currentRoundObjectCount.value + ' index = ' + index);
+        //alert('Incorrect! The correct answer is ' + currentRoundObjectCount.value + ' index = ' + index);
+        containerStyle.value = { backgroundColor: 'red' }; // Set background to red
+        setTimeout(() => {
+            containerStyle.value = {}; // Reset to default
+        }, 250);
     }
 
     if (currentRound.value + 1 <= maxRounds.value - 1) {
@@ -163,6 +173,7 @@ const calculateStars = () => {
 
 const finishLevel = () => {
     alert(`Congrats! You earned ${ calculateStars().toString() } stars!`);
+
 }
 
 </script>
@@ -171,21 +182,34 @@ const finishLevel = () => {
 
 <template>
 
-<div class="flex flex-col w-fit h-fit items-center justify-center gap-2">
-    <button class="bg-orange-700 mb-4 p-2 font-bold" @click="nextRound">next round</button>
+<div class="flex flex-col w-fit h-fit items-center justify-center gap-8">
+    <!--<button class="bg-orange-700 mb-4 p-2 font-bold" @click="nextRound">next round</button>
     <h1 class="text-3xl font-bold mb-4">Round {{ displayRound }} of {{ displayMaxRounds }}</h1>
+-->
 
-    <div class="bg-slate-800 w-[50rem] h-[36rem] flex flex-row items-center justify-center flex-wrap gap-6">
+    <!--Progress bar on top of container for objects-->
+    
+
+    <!--Container for objects-->
+    <div class="bg-white w-[42rem] h-[18rem] flex flex-row items-center justify-center flex-wrap gap-6
+    rounded-2xl border-4 border-[var(--color-pink)]"
+    :style="containerStyle">
         <img :src="objectImage"
         v-for="n in currentRoundObjectCount"
         :key="n"
         alt="Image"
-        class="w-32 h-32" />
+        class="w-28 h-28" />
     </div>
 
-    <div class="grid grid-cols-2 w-full h-full flex-wrap gap-4">
-        <button v-for="n in 4" :key="n" @click="checkAnswer(n)" class="bg-white text-black text-2xl p-4">{{ currentRoundChoices[n - 1] }}</button>
+    <!--Answer choices-->
+    <div class="grid grid-cols-4 w-full h-full flex-wrap gap-4">
+        <button v-for="n in 4" :key="n" @click="checkAnswer(n)" class="bg-white text-[var(--color-blueTheme)] text-5xl p-2 rounded-2xl border-3 border-[var(--color-pink)]"
+        style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">{{ currentRoundChoices[n - 1] }}</button>
     </div>
 </div>
 
 </template>
+
+<style scoped>
+
+</style>
