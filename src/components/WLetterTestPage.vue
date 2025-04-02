@@ -1,24 +1,30 @@
+<script setup>
+import BackButton from './BackButton.vue';
+</script>
+
 <template>
-    <div class="h-screen bg-darkmint p-4 py-10 px-10 mx-0 flex flex-col items-center justify-between relative"> <!-- Set relative on the parent div -->
-      <p class="mx-12 text-yellowTheme custom-text-border text-[5rem]" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
+    <div class="h-screen bg-[var(--color-darkmint)] p-4 py-10 px-10 mx-0 flex flex-col items-center justify-between relative"> <!-- Set relative on the parent div -->
+      <p class="mx-12 text-[var(--color-yellowTheme)] custom-text-border text-[4rem] relative top-[1rem]" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
         TRACE THE LETTERS SHOWN
       </p>
+
+      <BackButton class="relative right-[48%] -top-[6rem] transform -translate-y-1/2 z-10"/>
   
       <!-- Stencil area with conditional cursor class -->
       <div class="box-border border-2 p-2 bg-amber-50 relative mb-6">
         <div
           class="stencil-area w-[500px] h-[375px] bg-black/10 border-2 border-black flex items-center justify-center text-center"
-          :class="{'cursor-stencil': isHovered}"
+          :class="{'cursor-stencil': isHovered}" 
           @mouseover="isHovered = true"
           @mouseleave="isHovered = false"
-        >
+        > <!--edit this cursor for canvas template-->
         </div>
       </div>
   
-      <!-- Button container to align left with absolute positioning -->
-      <div class="absolute left-[30rem] top-[83%] transform -translate-y-1/2 z-10"> <!-- Use 'z-10' to ensure it's visible on top -->
-        <button class="text-blueTheme text-[2rem] bg-white rounded-full px-6
-        border-pink border-3 cursor-pointer" 
+      <!-- Button container to align left with relative positioning -->
+      <div class="relative right-[12rem] top-[3rem] transform -translate-y-1/2 z-10">
+        <button class="text-[var(--color-blueTheme)] text-[2rem] bg-white rounded-full px-6
+        border-[var(--color-pink)] border-3 cursor-pointer" 
           style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
           RESET
         </button>
