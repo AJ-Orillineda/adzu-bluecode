@@ -5,7 +5,7 @@
         class="bg-blue-500 text-white py-2 px-6 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
         @click="triggerConfetti"
       >
-        Click Me for Confetti!
+        Submit
       </button>
     </div>
   </template>
