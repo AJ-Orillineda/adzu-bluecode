@@ -14,9 +14,11 @@ import PlayIcon from '../assets/icons/PlayIcon.png';
         <img src="../assets/icons/AppLogo.png" alt="Logo" class="w-[30rem] pb-10 animate-tilt" />
 
         <!-- START BUTTON -->
-        <Button :imgSrc="PlayIcon">
-            START
-        </Button>
+         <div class="w-60">
+            <Button :imgSrc="PlayIcon">
+                START
+            </Button>
+         </div>
     </div>
 </template>
 
