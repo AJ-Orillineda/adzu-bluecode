@@ -20,12 +20,17 @@ onMounted(() => {
     console.log(`levelId: ${levelId.value}`);
 });
 
+// Navigate to previous page
+const goBack = () => {
+    router.back();
+};
+
 </script>
 
 <template>
     <div class="w-screen h-screen p-8 flex flex-col justify-center items-center bg-[var(--color-darkmint)] gap-8 text-[6rem] text-[var(--color-yellowTheme)] custom-text-border"
     style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
-        <BackButton route="/numbers/matching" class="absolute top-8 left-8" />
+        <BackButton @click="goBack" class="absolute top-8 left-8" />
         <h1 class="text-8xl mb-6">Count this!</h1>
         <NumberBox :title="currentLevel.title.toString()" :maxObjects="currentLevel.maxObjects" :randomObjectPerLevel="currentLevel.randomObjectPerLevel" />
     </div>

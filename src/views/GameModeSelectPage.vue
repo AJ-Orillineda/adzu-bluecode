@@ -1,15 +1,34 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import Button from '../components/ButtonsModeSelect.vue';
 import LogoPencil from '../assets/icons/WritingIcon.png';
 import LogoNumbers from '../assets/icons/MathIcon.png';
 import BackButton from '../components/BackButton.vue';
+
+// ROUTER NAVIGATION
+const router = useRouter();
+
+// Navigate to the WritingModeSelectPage
+const goToWriting = () => {
+  router.push('/writingmode'); 
+};
+
+// Navigate to the NumbersModeSelectPage
+const goToNumbers = () => {
+  router.push('/numbersmode'); 
+};
+
+// Navigate to previous page
+const goBack = () => {
+  router.back();
+};
 </script>
 
 <template>
     <div class="h-screen bg-[var(--color-darkmint)] text-white p-4 py-10 px-10 mx-0 flex flex-col items-center" id="gamemode-select-page">
         <!-- BACK BUTTON -->
         <div class="w-full flex justify-start pb-5">
-            <BackButton />
+            <BackButton @click="goBack"/>
         </div>
         
         <!-- TITLE CAPTION -->
@@ -20,12 +39,12 @@ import BackButton from '../components/BackButton.vue';
         <!-- BUTTON CONTAINER -->
          <div class="grid grid-cols-2 gap-7 w-full">
             <!-- WRITING OPTTION -->
-            <Button :imgSrc="LogoPencil">
+            <Button :imgSrc="LogoPencil" @click="goToWriting">
                 Writing
             </Button>
 
             <!-- NUMBERS OPTION -->
-            <Button :imgSrc="LogoNumbers">
+            <Button :imgSrc="LogoNumbers" @click="goToNumbers">
                 Numbers
             </Button>
          </div>
