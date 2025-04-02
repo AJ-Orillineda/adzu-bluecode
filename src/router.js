@@ -1,15 +1,47 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
+    // WRITING SECTION
     {
         path: '/',
         name: 'Home',
-        component: () => import('./views/HomeView.vue')
+        component: () => import('./views/LandingPage.vue')
     },
+    {
+        path: '/gamemodes',
+        name: 'Game Modes',
+        component: () => import('./views/GameModeSelectPage.vue')
+    },
+    {
+        path: '/writingmode',
+        name: 'Writing Modes',
+        component: () => import('./views/WritingModeSelectPage.vue')
+    },
+
+    // MISSING VIEWS FOR WRITING CANVAS (NOT CORRECT VIEWS)
+    {
+        path: '/vowels',
+        name: 'Vowels',
+        component: () => import('./views/VowelsPage.vue')
+    },
+    {
+        path: '/writing-test',
+        name: 'Writing Test',
+        component: () => import('./views/WLetterTestPage.vue')
+    },
+
+    // Dev
     {
         path: '/dev',
         name: 'Dev',
         component: () => import('./views/Dev.vue')
+    },
+
+    // NUMBERS SECTION
+    {
+        path: '/numbersmode',
+        name: 'Number Modes',
+        component: () => import('./views/NumbersModeSelectPage.vue')
     },
     {
         path: '/numbers/matching',

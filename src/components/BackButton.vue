@@ -13,8 +13,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <router-link :to="props.route" id="back" class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16 flex items-center justify-center">
-        <img src="@/assets/icons/backicon.png" alt="Button Image" class="custom-back-icon back-icon-size" />
+    <router-link 
+        :to="props.route" 
+        id="back" 
+        class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16 flex items-center justify-center 
+        transition-transform duration-300 hover:scale-110"
+    >
+    <img src="@/assets/icons/backicon.png" alt="Button Image" class="custom-back-icon back-icon-size" />
     </router-link>
 </template>
 

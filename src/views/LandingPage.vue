@@ -1,21 +1,28 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import Button from '../components/ButtonIconBasic.vue';
 import PlayIcon from '../assets/icons/PlayIcon.png';
+
+// ROUTER NAVIGATION
+const router = useRouter();
+
+// Navigate to the GameModes page
+const goToModes = () => {
+  router.push('/gamemodes'); 
+};
 </script>
 
 <template>
     <div class="h-screen bg-[var(--color-darkmint)] text-white p-4 py-10 px-10 mx-0 flex flex-col items-center" id="gamemode-select-page">
-        <!-- TITLE CAPTION -->
-        <p class="text-[6rem] text-[var(--color-yellowTheme)] custom-text-border" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
-            [GAME TITLE]
-        </p>
+        <!-- GAME TITLE -->
+        <img src="../assets/icons/AppName.png" alt="Logo" class="w-[50rem]" />
 
         <!-- LOGO -->
-        <img src="../assets/icons/AppLogo.png" alt="Logo" class="w-[30rem] pb-10 animate-tilt" />
+        <img src="../assets/icons/AppLogo.png" alt="Logo" class="w-[30rem] pb-5 animate-tilt" />
 
         <!-- START BUTTON -->
          <div class="w-60">
-            <Button :imgSrc="PlayIcon">
+            <Button :imgSrc="PlayIcon" @click="goToModes">
                 START
             </Button>
          </div>
