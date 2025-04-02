@@ -1,4 +1,5 @@
 <script setup>
+import BackButton from '@/components/BackButton.vue';
 import NumberBox from '@/components/NumberBox.vue';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -22,8 +23,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="w-screen h-screen flex flex-col justify-center items-center">
-        <h1>{{ currentLevel.title.toString() }}</h1>
+    <div class="w-screen h-screen p-8 flex flex-col justify-center items-center bg-[var(--color-darkmint)] gap-8 text-[6rem] text-[var(--color-yellowTheme)] custom-text-border"
+    style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
+        <BackButton route="/numbers/matching" class="absolute top-8 left-8" />
+        <h1 class="text-8xl mb-6">Count this!</h1>
         <NumberBox :title="currentLevel.title.toString()" :maxObjects="currentLevel.maxObjects" :randomObjectPerLevel="currentLevel.randomObjectPerLevel" />
     </div>
 </template>

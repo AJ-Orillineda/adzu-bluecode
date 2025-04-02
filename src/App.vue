@@ -7,9 +7,6 @@ import LevelSelectButton from './components/LevelSelectButton.vue';
 </script>
 
 <template>
-
-  <MatchingTestPage/>
-  
   <RouterView />
 </template>
 

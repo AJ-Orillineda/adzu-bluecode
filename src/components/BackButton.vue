@@ -1,11 +1,15 @@
+<script setup>
+const props = defineProps({
+    route: { type: String, required: true, default: '/' },
+});
+</script>
+
 <template>
-    <button id="back" class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16">
+    <router-link :to="props.route" id="back" class="bg-white rounded-2xl border-[var(--color-pink)] border-3 cursor-pointer w-1/16 flex items-center justify-center">
         <img src="@/assets/icons/backicon.png" alt="Button Image" class="custom-back-icon back-icon-size" />
-    </button>
+    </router-link>
 </template>
 
-<script>
-</script>
 
 <style scoped>
 

@@ -191,7 +191,7 @@ const finishLevel = () => {
     
 
     <!--Container for objects-->
-    <div class="bg-white w-[42rem] h-[18rem] flex flex-row items-center justify-center flex-wrap gap-6
+    <div class="bg-white w-[42rem] h-[24rem] flex flex-row items-center justify-center flex-wrap gap-6
     rounded-2xl border-4 border-[var(--color-pink)]"
     :style="containerStyle">
         <img :src="objectImage"
@@ -202,9 +202,9 @@ const finishLevel = () => {
     </div>
 
     <!--Answer choices-->
-    <div class="grid grid-cols-4 w-full h-full flex-wrap gap-4">
+    <div class="grid grid-cols-4 w-full h-[5rem] flex-wrap gap-4">
         <button v-for="n in 4" :key="n" @click="checkAnswer(n)" class="bg-white text-[var(--color-blueTheme)] text-5xl p-2 rounded-2xl border-3 border-[var(--color-pink)]"
-        style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">{{ currentRoundChoices[n - 1] }}</button>
+        style="font-family: 'Sigmar One', sans-serif; font-weight: 200;">{{ currentRoundChoices[n - 1] }}</button>
     </div>
 </div>
 
