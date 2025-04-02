@@ -2,7 +2,7 @@
 import BackButton from '@/components/BackButton.vue';
 import LevelCompleted from '@/components/LevelCompleted.vue';
 import NumberBox from '@/components/NumberBox.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 const props = defineProps({
@@ -41,6 +41,24 @@ const nextLevelRoute = () => {
     }
 }
 
+
+onMounted(() => {
+    levelFinished.value = false;
+    starCount.value = 0;
+});
+
+const numberBoxRef = ref(null);
+
+watch(() => props.levelId, (newLevelId) => {
+  levelFinished.value = false;
+  starCount.value = 0;
+  currentLevel.value = levels[newLevelId];
+
+  if (numberBoxRef.value) {
+    numberBoxRef.value.reset();
+  }
+}, { immediate: true });
+
 </script>
 
 <template>
@@ -49,11 +67,20 @@ const nextLevelRoute = () => {
         :class="[(levelFinished) ? '' : 'hidden']" />
 
         <div class="w-screen h-screen p-8 flex flex-col justify-center items-center bg-[var(--color-darkmint)] gap-8 text-[6rem] text-[var(--color-yellowTheme)] custom-text-border transition-all duration-1000 ease-in-out"
-        style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
-            <BackButton route="/numbers/matching" class="absolute top-8 left-8" />
+        style="font-family: 'Sigmar One', sans-serif; font-weight: 400; -webkit-text-stroke-width: 3px; -webkit-text-stroke-color: black;">
+            <div class="flex flex-row w-fit gap-6 absolute top-8 left-8 justify-center items-center">
+                <BackButton route="/numbers/matching" class="relative w-24" />
+                <h1 class="text-3xl" style="-webkit-text-stroke-width: 1px;">Difficulty: {{ currentLevel.title }}</h1>
+            </div>
             <h1 class="text-8xl mb-6">Count this!</h1>
             
-            <NumberBox :title="currentLevel.title" :maxObjects="currentLevel.maxObjects" :randomObjectPerLevel="currentLevel.randomObjectPerLevel" @score-update="handleScoreUpdate" />
+            <NumberBox
+                ref="numberBoxRef"
+                :key="props.levelId"
+                :title="currentLevel.title"
+                :maxObjects="currentLevel.maxObjects"
+                :randomObjectPerLevel="currentLevel.randomObjectPerLevel"
+                @score-update="handleScoreUpdate" />
         </div>
     </div>
 </template>

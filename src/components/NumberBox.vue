@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 // import apple from '/dev/img/apple.png';
 // import cat from '/dev/img/cat.png';
 // import dog from '/dev/img/dog.png';
@@ -189,6 +189,14 @@ const finishLevel = () => {
     });
     // alert(`Congrats! You earned ${ calculateStars().toString() } stars!`);
 }
+
+const reset = () => {
+    currentRound.value = 0;
+    score.value = 0;
+    levelFinished.value = false;
+}
+
+defineExpose({ reset });
 
 </script>
 
