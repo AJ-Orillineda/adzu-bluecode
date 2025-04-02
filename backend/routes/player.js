@@ -78,4 +78,34 @@ router.put('/numbersLevel', async(req, res)=>{
     }
 });
 
-module.exports = router; // Ensure this line is present
+// Submit score for a specific numbers level and increment overall numbersLevel
+router.put('/:playerId/numbersLevel/:levelId/score', async (req, res) => {
+    const { playerId, levelId } = req.params;
+    const score = parseInt(req.body.score);
+
+    if (isNaN(score)) {
+        return res.status(400).json({ message: 'Invalid score provided' });
+    }
+
+    try {
+        const player = await Player.findOneAndUpdate(
+            { playerId: 0 }, // Assuming playerId is always 0
+            {
+                $set: { [`numbersScores.${levelId}`]: score }, // Set the score for the specific level
+                $inc: { numbersLevel: 1 }, // Increment the overall numbersLevel
+            },
+            { new: true } // Return the updated document
+        );
+
+        if (!player) {
+            return res.status(404).json({ message: 'Player not found' });
+        }
+
+        res.status(200).json(player);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error updating player data', error: error.message });
+    }
+});
+
+module.exports = router;

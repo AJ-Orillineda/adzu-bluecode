@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, defineProps, defineEmits } from 'vue';
 // import apple from '/dev/img/apple.png';
 // import cat from '/dev/img/cat.png';
 // import dog from '/dev/img/dog.png';
@@ -20,7 +20,11 @@ const props = defineProps({
     maxObjects: { type: Number, required: true, default: 10 },
     objectType: { type: Number, default: 0 },
     randomObjectPerLevel: {type: Boolean, default: false },
+    levelId: { type: [String, Number], required: true }, // ADDED: levelId prop
+    playerId: { type: [String, Number], required: true }, // ADDED: playerId prop
 });
+
+const emit = defineEmits(['level-completed']); // ADDED: defineEmits
 
 const randomImages = computed(() => {
     return Array(maxRounds.value).fill(0).map(() => {
@@ -81,11 +85,13 @@ const nextRound = () => {
     if (props.randomObjectPerLevel) {
         objectImage;
     }
-    
+
     if (currentRound.value < maxRounds.value - 1) {
         currentRound.value++;
     } else {
-        currentRound.value = 0;
+        finishLevel(); // Call finishLevel when all rounds are done
+        currentRound.value = 0; // Reset round for potential replay
+        score.value = 0; // Reset score for potential replay
     }
 }
 
@@ -134,7 +140,7 @@ const currentRoundChoices = computed(() => {
 const checkAnswer = (index) => {
     index--;
 
-    console.log(`currentRoundChoices: ${currentRoundChoices.value[index]}  currentRoundObjectCount: ${currentRoundObjectCount.value} index: ${index}`);
+    console.log(`currentRoundChoices: ${currentRoundChoices.value[index]}   currentRoundObjectCount: ${currentRoundObjectCount.value} index: ${index}`);
 
     if (currentRoundChoices.value[index] === currentRoundObjectCount.value) {
         score.value += scorePerCorrectAnswer.value;
@@ -162,15 +168,37 @@ const calculateStars = () => {
 }
 
 const finishLevel = () => {
-    alert(`Congrats! You earned ${ calculateStars().toString() } stars!`);
-}
+    const finalScore = calculateStars();
+    alert(`Congrats! You earned ${finalScore} stars!`);
+
+    // Make API call to update backend with score and increment level
+    fetch(`/api/players/${props.playerId}/numbersLevel/${props.levelId}/score`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ score: finalScore }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Player data updated:', data);
+        emit('level-completed', props.levelId); // Emit an event with the completed level ID
+    })
+    .catch(error => {
+        console.error('Error updating player data:', error);
+        alert('Failed to save score. Please try again later.'); // Basic error feedback
+        // Optionally, emit an error event to the parent to handle the failure
+    });
+};
 
 </script>
 
-
-
 <template>
-
 <div class="flex flex-col w-fit h-fit items-center justify-center gap-2">
     <button class="bg-orange-700 mb-4 p-2 font-bold" @click="nextRound">next round</button>
     <h1 class="text-3xl font-bold mb-4">Round {{ displayRound }} of {{ displayMaxRounds }}</h1>
@@ -187,5 +215,4 @@ const finishLevel = () => {
         <button v-for="n in 4" :key="n" @click="checkAnswer(n)" class="bg-white text-black text-2xl p-4">{{ currentRoundChoices[n - 1] }}</button>
     </div>
 </div>
-
 </template>
