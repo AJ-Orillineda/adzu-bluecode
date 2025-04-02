@@ -179,7 +179,7 @@ const finishLevel = () => {
         <img :src="objectImage"
         v-for="n in currentRoundObjectCount"
         :key="n"
-        alt="Apple"
+        alt="Image"
         class="w-32 h-32" />
     </div>
 
