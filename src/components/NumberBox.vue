@@ -1,11 +1,47 @@
 <script setup>
 import { ref, computed } from 'vue';
-import apple from '/dev/img/apple.png';
+// import apple from '/dev/img/apple.png';
+// import cat from '/dev/img/cat.png';
+// import dog from '/dev/img/dog.png';
+// import water from '/dev/img/water.png';
+// import pencil from '/dev/img/pencil.png';
+
+const images = [
+    { path: '/dev/img/apple.png', name: 'apple' },
+    { path: '/dev/img/cat.png', name: 'cat' },
+    { path: '/dev/img/dog.png', name: 'dog' },
+    { path: '/dev/img/water.png', name: 'water' },
+    { path: '/dev/img/pencil.png', name: 'pencil' },
+];
+
+const objectTypes = ref(images);
+
+const props = defineProps({
+    maxObjects: { type: Number, required: true, default: 10 },
+    objectType: { type: Number, default: 0 },
+    randomObjectPerLevel: {type: Boolean, default: false },
+});
+
+const randomImages = computed(() => {
+    return Array(maxRounds.value).fill(0).map(() => {
+        const randomIndex = generateRandomNumber(0, objectTypes.value.length - 1);
+        return objectTypes.value[randomIndex].path;
+    });
+});
+
+// update objectImage to use the current round's image
+const objectImage = computed(() => {
+    if (props.randomObjectPerLevel) {
+        return randomImages.value[currentRound.value];
+    }
+    return objectTypes.value[props.objectType].path;
+});
+
 
 // maximum number of rounds
 const maxRounds = ref(5);
 // maximum number of objects per round
-const maxObjects = ref(7);
+const maxObjects = ref(props.maxObjects);
 // current score
 const score = ref(0);
 // score per correct answer
@@ -15,6 +51,7 @@ const generateRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// object counts per round
 const objectCountArray = computed(() => {
     const array = [];
     let previousNumber = null;
@@ -41,6 +78,10 @@ const currentRoundObjectCount = computed(() => objectCountArray.value[currentRou
 
 // function to move to the next round
 const nextRound = () => {
+    if (props.randomObjectPerLevel) {
+        objectImage;
+    }
+    
     if (currentRound.value < maxRounds.value - 1) {
         currentRound.value++;
     } else {
@@ -135,7 +176,7 @@ const finishLevel = () => {
     <h1 class="text-3xl font-bold mb-4">Round {{ displayRound }} of {{ displayMaxRounds }}</h1>
 
     <div class="bg-slate-800 w-[50rem] h-[36rem] flex flex-row items-center justify-center flex-wrap gap-6">
-        <img :src="apple"
+        <img :src="objectImage"
         v-for="n in currentRoundObjectCount"
         :key="n"
         alt="Apple"

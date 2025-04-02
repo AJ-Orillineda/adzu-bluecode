@@ -5,6 +5,6 @@ import NumberBox from '@/components/NumberBox.vue';
 
 <template>
     <div class="flex flex-row w-full h-full flex-wrap items-center justify-center">
-        <NumberBox />
+        <NumberBox maxObjects="10" objectType="2" randomObjectPerLevel="true" />
     </div>
 </template>
