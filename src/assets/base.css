@@ -50,6 +50,15 @@
   }
 }
 
+  :root {
+    --color-darkmint: #158281;
+    --color-yellowTheme: #feca39;
+    --color-pink: #f45b77;
+    --color-blueTheme: #113263;
+    --color-lockedTheme: #AA939D;
+  }
+
+
 *,
 *::before,
 *::after {
