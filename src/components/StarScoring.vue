@@ -1,31 +1,15 @@
 <template>
-    <div class="flex justify-center items-center">
-        <div class="flex space-x-2" style="font-size: 7rem;">
-          <span 
-            v-for="(star, index) in 3" 
-            :key="index" 
-            @click="setRating(index + 1)"
-            class="cursor-pointer"
-            :class="index < rating ? 'text-yellow-500' : 'text-gray-300'"
-          >
-            ★<!--image-->
-          </span>
-        </div>
+    <div class="flex flex-row justify-center items-center gap-8">
+        <img v-for="i in 3" :key="i" :src="(i <= props.starCount) ? stariconfilled : stariconempty" class="w-24" />
     </div>
-      </template>
-      
-      <script>
-      export default {
-        data() {
-          return {
-            rating: 0, // Default rating
-          };
-        },
-        methods: {
-          setRating(value) {
-            this.rating = value;
-          },
-        },
-      };
-      </script>
-      
+</template>
+
+<script setup>
+import stariconempty from '/dev/img/StarIconEmpty.png';
+import stariconfilled from '/dev/img/StarIconwColor.png';
+
+const props = defineProps({
+    starCount: { type: Number, required: true, default: 0 },
+});
+
+</script>

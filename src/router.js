@@ -11,6 +11,11 @@ const routes = [
         name: 'Dev',
         component: () => import('./views/Dev.vue')
     },
+    {
+        path: '/numbers/matching',
+        name: 'Number Matching',
+        component: () => import('./views/NumberLevelSelectionView.vue')
+    },
 ];
 
 const router = createRouter({
