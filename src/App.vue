@@ -6,16 +6,6 @@ import MatchingTestPage from './components/MatchingTestPage.vue';
 </script>
 
 <template>
-  <header>
-
-  </header>
-
-  <WLetterTestPage />
-
-  <VowelsPage />
-
-  <MatchingTestPage />
-
   <RouterView />
 </template>
 
