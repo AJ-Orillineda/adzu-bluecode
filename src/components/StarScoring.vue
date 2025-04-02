@@ -8,7 +8,7 @@
             class="cursor-pointer"
             :class="index < rating ? 'text-yellow-500' : 'text-gray-300'"
           >
-            ★
+            ★<!--image-->
           </span>
         </div>
     </div>
