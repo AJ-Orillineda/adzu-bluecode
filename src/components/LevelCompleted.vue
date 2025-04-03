@@ -1,5 +1,7 @@
 <script setup>
+import BackButton from './BackButton.vue';
 import HomeButton from './HomeButton.vue';
+import LetterLevelButton from './LetterLevelButton.vue';
 import StarScoring from './StarScoring.vue';
 
 const props = defineProps({
@@ -12,7 +14,7 @@ const props = defineProps({
 <template>
     <div class="h-screen w-screen bg-[var(--color-darkmint)] p-4 py-10 px-10 mx-0 flex flex-col items-center gap-10 relative">
     <!--Home Button-->
-        <HomeButton class="absolute top-8 left-8 h-16"/>
+        <BackButton class="absolute top-8 left-8 h-16" route="/numbers/matching"/>
     
     <!--Text for level completed-->
         <p class="mt-12 text-[var(--color-yellowTheme)] custom-text-border text-[3.5rem] mb-0 block leading-none" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">

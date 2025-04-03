@@ -10,12 +10,12 @@ const router = useRouter();
 
 // Navigate to the WritingModeSelectPage
 const goToWriting = () => {
-  router.push('/writingmode'); 
+  router.push('/letters'); 
 };
 
 // Navigate to the NumbersModeSelectPage
 const goToNumbers = () => {
-  router.push('/numbersmode'); 
+  router.push('/numbers'); 
 };
 
 // Navigate to previous page
@@ -28,7 +28,7 @@ const goBack = () => {
     <div class="h-screen bg-[var(--color-darkmint)] text-white p-4 py-10 px-10 mx-0 flex flex-col items-center" id="gamemode-select-page">
         <!-- BACK BUTTON -->
         <div class="w-full flex justify-start pb-5">
-            <BackButton @click="goBack"/>
+            <BackButton route="/" />
         </div>
         
         <!-- TITLE CAPTION -->

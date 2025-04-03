@@ -25,7 +25,7 @@ const changeRoute = () => {
 
 <template>
     <button class="h-72 text-[var(--color-blueTheme)] text-[4rem] text-center rounded-4xl px-6 border-[var(--color-pink)] border-3 cursor-pointer flex items-center justify-center
-    hover:h-96 transition-all duration-200 ease-in-out"
+    hover:scale-105 hover:rotate-1 hover:shadow-2xl transition-all duration-200 ease-in-out"
     :class="[props.width, props.height, (props.locked) ? 'bg-gray-400' : 'bg-white']"
     @click="changeRoute"
         style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">

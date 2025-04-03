@@ -13,16 +13,22 @@ const routes = [
         component: () => import('./views/GameModeSelectPage.vue')
     },
     {
-        path: '/writingmode',
+        path: '/letters',
         name: 'Writing Modes',
         component: () => import('./views/WritingModeSelectPage.vue')
     },
 
     // MISSING VIEWS FOR WRITING CANVAS (NOT CORRECT VIEWS)
     {
-        path: '/vowels',
+        path: '/letters/vowels',
         name: 'Vowels',
-        component: () => import('./views/VowelsPage.vue')
+        component: () => import('./views/VowelLevelSelectionView.vue')
+    },
+    {
+        path: '/letters/vowels/tracing/:levelId',
+        name: 'Vowel Tracing Level',
+        component: () => import('./views/VowelLevelView.vue'),
+        props: true,
     },
     {
         path: '/writing-test',
@@ -39,7 +45,7 @@ const routes = [
 
     // NUMBERS SECTION
     {
-        path: '/numbersmode',
+        path: '/numbers',
         name: 'Number Modes',
         component: () => import('./views/NumbersModeSelectPage.vue')
     },

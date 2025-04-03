@@ -1,59 +1,50 @@
+<script setup>
+import WModalComponent from '../components/WModalComponent.vue';
+import confetti from 'canvas-confetti';
+import { ref } from 'vue';
+import LetterLevelButton from './LetterLevelButton.vue';
+import submitIcon from '@/assets/icons/SubmitIcon.png';
+
+const isModalVisible = ref(false);
+const isHovered = ref(false);
+
+const openModal = () => {
+    isModalVisible.value = true;
+}
+
+const triggerConfetti = () => {
+  confetti({
+    particleCount: 100,
+    angle: 90,
+    spread: 45,
+    origin: { x: 0.5, y: 0.5 },
+    colors: ['#ff0', '#ff6347', '#32cd32', '#1e90ff'],
+  });
+}
+
+const handleSubmit = () => {
+    openModal(); // Use this.openModal()
+    triggerConfetti(); // Use this.triggerConfetti()
+}
+
+defineExpose({
+  openModal,
+  triggerConfetti,
+  handleSubmit
+});
+</script>
+
+
 <template>
-  
-  <div class="relative left-[11rem] bottom-[36px] z-10">
-    <button
-      class="text-[var(--color-blueTheme)] text-[2rem] bg-white rounded-full px-6 border-[var(--color-pink)] border-3 cursor-pointer"
-      style="font-family: 'Sigmar One', sans-serif; font-weight: 400;"
-      @click="handleSubmit"
-    >
-    <img src="@/assets/icons/submiticon.png" alt="Button Image" class="custom-submit-icon submit-icon-size" />
-      SUBMIT
-    </button>
-      </div>
-      <!-- Modal component -->
-      <WModalComponent
-        :isVisible="isModalVisible"
-        @update:isVisible="isModalVisible = $event"
-      />
+  <LetterLevelButton text="Submit" :iconPath="submitIcon" @click="handleSubmit"/>
+  <!-- Modal component -->
+  <WModalComponent
+    :isVisible="isModalVisible"
+    @update:isVisible="isModalVisible = $event"
+  />
 </template>
 
-
-<script>
-  import WModalComponent from '../components/WModalComponent.vue';
-  import confetti from 'canvas-confetti';
-  
-  export default {
-    components: {
-      WModalComponent,
-    },
-    data() {
-      return {
-        isHovered: false,
-        isModalVisible: false,
-      };
-    },
-    methods: {
-  openModal() {
-    this.isModalVisible = true;
-  },
-  triggerConfetti() {
-    confetti({
-      particleCount: 100,
-      angle: 90,
-      spread: 45,
-      origin: { x: 0.5, y: 0.5 },
-      colors: ['#ff0', '#ff6347', '#32cd32', '#1e90ff'],
-    });
-  },
-  handleSubmit() { // Corrected syntax: method name directly
-    this.openModal(); // Use this.openModal()
-    this.triggerConfetti(); // Use this.triggerConfetti()
-  },
-},
-  }
-  </script>
-  
-  <style scoped>
+<style scoped>
 
 .custom-submit-icon{
     display: inline-block;
