@@ -1,5 +1,6 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, defineProps, defineEmits } from 'vue';
+
 // import apple from '/dev/img/apple.png';
 // import cat from '/dev/img/cat.png';
 // import dog from '/dev/img/dog.png';
@@ -22,7 +23,11 @@ const props = defineProps({
     maxObjects: { type: Number, required: true, default: 10 },
     objectType: { type: Number, default: 0 },
     randomObjectPerLevel: {type: Boolean, default: false },
+    levelId: { type: [String, Number], required: true }, // ADDED: levelId prop
+    playerId: { type: [String, Number], required: true }, // ADDED: playerId prop
 });
+
+const emit = defineEmits(['level-completed']); // ADDED: defineEmits
 
 const randomImages = computed(() => {
     return Array(maxRounds.value).fill(0).map(() => {
@@ -83,7 +88,7 @@ const currentRoundObjectCount = computed(() => objectCountArray.value[currentRou
 const isTransitioning = ref(false);
 
 const nextRound = () => {
-currentRound.value++;  // Move to next round
+    currentRound.value++;  // Move to next round
 }
 
 // helper function to display current round
@@ -182,11 +187,23 @@ const emit = defineEmits(['scoreUpdate']);
 
 const finishLevel = () => {
     const starsEarned = calculateStars();
+    
+    axios.put(`/api/players/${props.playerId}/numbersLevel/${props.levelId}/score`, { score: finalScore })
+        .then(response => {
+            console.log('Player data updated:', response.data);
+            emit('level-completed', props.levelId);
+        })
+        .catch(error => {
+            console.error('Error updating player data:', error);
+            alert('Failed to save score. Please try again later.');
+    });
     emit('scoreUpdate', { 
         score: score.value, 
         stars: calculateStars(),
         levelFinished: true,
     });
+    
+    
     // alert(`Congrats! You earned ${ calculateStars().toString() } stars!`);
 }
 
@@ -198,19 +215,16 @@ const reset = () => {
 
 defineExpose({ reset });
 
+
 </script>
 
-
-
 <template>
-
 <div class="flex flex-col w-fit h-fit items-center justify-center gap-8">
     <!-- <button class="bg-orange-700 mb-4 p-2 font-bold" @click="nextRound">next round</button> -->
     <h1 class="text-4xl font-bold mb-4" style="-webkit-text-stroke-width: 2px;">Round {{ displayRound }} of {{ displayMaxRounds }}</h1>
 
 
     <!--Progress bar on top of container for objects-->
-    
 
     <!--Container for objects-->
     <div class="bg-white w-[42rem] h-[24rem] flex flex-row items-center justify-center flex-wrap gap-6

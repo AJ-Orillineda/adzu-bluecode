@@ -32,3 +32,9 @@ npm install tailwindcss @tailwindcss/vite
 ```sh
 npm run build
 ```
+
+## MongoDB installation
+
+1. Follow the steps at [MongoDB Manual](https://www.mongodb.com/docs/manual/installation/) 
+2. Install Mongo Compass
+3. When Mongo Compass is installed, add a connection and copy the URI which is mongodb://localhost:27017/ by default
