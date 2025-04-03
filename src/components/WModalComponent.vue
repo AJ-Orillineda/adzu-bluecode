@@ -36,7 +36,9 @@ const closeModal = () => {
   <div v-if="isVisible" class="z-50 inset-0 flex justify-center items-center bg-[#02020290]">
     <div class="bg-white bg-opacity-50 p-6 rounded-lg w-[45rem] h-[25rem] relative flex flex-col justify-center items-center gap-8 border-4 border-gray-800">
       <!--Modal Header-->
-      <h3 class="text-black text-xl text-center font-semibold mb-4">Level done!</h3>
+      <h3 class="text-center mb-4" style="color: black; font-size: 4rem; font-weight: 800;">
+        Level Done!
+      </h3>
 
       <StarScoring :starCount="props.stars" />
 

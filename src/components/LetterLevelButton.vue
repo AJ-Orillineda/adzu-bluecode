@@ -18,7 +18,7 @@ const handleClick = () => {
 </script>
 
 <template>
-    <div @click="handleClick" class="flex flex-row items-center justify-start
+    <div @click="handleClick" class="flex flex-row items-center justify-center
     w-72 h-16 rounded-full
     text-[var(--color-blueTheme)] text-[2rem] bg-white
     border-[var(--color-pink)] border-3 cursor-pointer"
