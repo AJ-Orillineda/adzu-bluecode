@@ -5,7 +5,7 @@ import LetterBox from '@/components/LetterBox.vue';
 import BackButton from '../components/BackButton.vue';
 import SubmitButton from '../components/SubmitButton.vue';
 import LetterLevelButton from '@/components/LetterLevelButton.vue';
-import restartIcon from '@/assets/icons/restarticon.png';
+import restartIcon from '@/assets/icons/RestartIcon.png';
 
 const props = defineProps({
     levelId: { type: Number, required: true },
