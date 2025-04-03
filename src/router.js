@@ -30,11 +30,6 @@ const routes = [
         component: () => import('./views/VowelLevelView.vue'),
         props: true,
     },
-    {
-        path: '/writing-test',
-        name: 'Writing Test',
-        component: () => import('./views/WLetterTestPage.vue')
-    },
 
     // Dev
     {

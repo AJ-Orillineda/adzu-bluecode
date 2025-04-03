@@ -9,7 +9,7 @@ const router = useRouter();
 
 // Navigate to WLetterTestPage
 const goToWLetterTest = () => {
-  router.push('/writing-test'); 
+  router.push('/letters'); 
 };
 
 // Navigate to previous page

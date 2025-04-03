@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import NumberBox from '@/components/NumberBox.vue';
 import LetterBox from '@/components/LetterBox.vue';
-import WLetterTestPage from '@/components/WLetterTestPage.vue';
+// import WLetterTestPage from '@/components/WLetterTestPage.vue';
 </script>
 
 <template>
