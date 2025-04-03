@@ -1,8 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import WLetterTestPage from './components/WLetterTestPage.vue';
-import VowelsPage from './components/VowelsPage.vue';
-import MatchingTestPage from './components/MatchingTestPage.vue';
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
-import BackButton from './BackButton.vue';
-import SubmitButton from './SubmitButton.vue';
+import BackButton from '../components/BackButton.vue';
+import SubmitButton from '../components/SubmitButton.vue';
 </script>
 
 <template>

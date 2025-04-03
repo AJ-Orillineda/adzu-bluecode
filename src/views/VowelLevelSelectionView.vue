@@ -1,14 +1,15 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import LevelSelectButton from '@/components/LevelSelectButton.vue';
+import StarScoring from '../components/StarScoring.vue';
 import BackButton from '../components/BackButton.vue';
+import LevelSelectButton from '@/components/LevelSelectButton.vue';
 
 // ROUTER NAVIGATION
 const router = useRouter();
 
-// Navigate to NumberLevelView
-const goToNumbersMatching = (level) => {
-  router.push(`/numbers/matching/${level}`);
+// Navigate to WLetterTestPage
+const goToWLetterTest = () => {
+  router.push('/writing-test'); 
 };
 
 // Navigate to previous page
@@ -16,22 +17,23 @@ const goBack = () => {
   router.back();
 };
 </script>
-
 <template>
   <div class="h-screen bg-[var(--color-darkmint)] text-white p-4 py-10 px-10 mx-0 flex flex-col items-center" id="vowels-page">
     <!-- BACK BUTTON -->
     <div class="w-full flex justify-start">
-      <BackButton route="/numbers"/> 
+            <BackButton route="/letters"/>
     </div>
-    
+
     <p class="text-[6rem] text-[var(--color-yellowTheme)] custom-text-border" style="font-family: 'Sigmar One', sans-serif; font-weight: 400;">
-      UNLOCK ALL LEVELS!
+      UNLOCK ALL VOWELS!
     </p>
 
-    <div class="grid grid-cols-3 gap-4 w-full max-w-7xl mx-auto mb-10">
-      <LevelSelectButton :id="0" title="Easy" :stars="1" :locked="false" route="/numbers/matching/0" />
-      <LevelSelectButton :id="1" title="Medium" :stars="2" :locked="false" route="/numbers/matching/1" />
-      <LevelSelectButton :id="2" title="Hard" :stars="3" :locked="false" route="/numbers/matching/2" />
+    <div class="grid grid-cols-3 gap-4 w-7xl mx-auto mb-10">
+      <LevelSelectButton title="Aa" :locked="false" route="/letters/vowels/tracing/0" />
+      <LevelSelectButton title="Ee" :locked="false" route="/letters/vowels/tracing/1" />
+      <LevelSelectButton title="Ii" :locked="false" route="/letters/vowels/tracing/2" />
+      <LevelSelectButton title="Oo" :locked="false" route="/letters/vowels/tracing/3" />
+      <LevelSelectButton title="Uu" :locked="false" route="/letters/vowels/tracing/4" />
     </div>
   </div>
 </template>

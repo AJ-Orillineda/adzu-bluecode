@@ -13,8 +13,8 @@ import NumberBox from './NumberBox.vue';
       <!--Back Button-->
         <BackButton class="relative right-[48%] -top-[6rem] transform -translate-y-1/2 z-10"/> <!--custom position for this component-->
       
-        <button @click="randomizeImages">Show Random Images</button>
-      <!-- Container for objects/images-->
+        
+      <!-- Container for NumberBox-->
         <div class="flex flex-row w-full h-full flex-wrap items-center justify-center">
             <NumberBox maxObjects="10" objectType="2" randomObjectPerLevel="true" />
         </div>
