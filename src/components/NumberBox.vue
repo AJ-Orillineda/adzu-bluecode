@@ -171,30 +171,17 @@ const finishLevel = () => {
     const finalScore = calculateStars();
     alert(`Congrats! You earned ${finalScore} stars!`);
 
-    // Make API call to update backend with score and increment level
-    fetch(`/api/players/${props.playerId}/numbersLevel/${props.levelId}/score`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ score: finalScore }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Player data updated:', data);
-        emit('level-completed', props.levelId); // Emit an event with the completed level ID
-    })
-    .catch(error => {
-        console.error('Error updating player data:', error);
-        alert('Failed to save score. Please try again later.'); // Basic error feedback
-        // Optionally, emit an error event to the parent to handle the failure
-    });
+    axios.put(`/api/players/${props.playerId}/numbersLevel/${props.levelId}/score`, { score: finalScore })
+        .then(response => {
+            console.log('Player data updated:', response.data);
+            emit('level-completed', props.levelId);
+        })
+        .catch(error => {
+            console.error('Error updating player data:', error);
+            alert('Failed to save score. Please try again later.');
+        });
 };
+
 
 </script>
 
